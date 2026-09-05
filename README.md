@@ -1,37 +1,28 @@
-# Activity-audit
-NAME : Abinaya R
+EXPERIMENT 05 AUDITING CLOUD ACTIVITY USING AWS CLOUDTRAIL
 
-REG.NO : 212225230004
+NAME: ABINAYA R
 
-DATE : 28/08/2026
+REG.NO :212225230004
 
-EXPERIMENT 4
-
-ASSET-ORIENTED RISK ASSESSMENT OF STORAGE ASSETS IN AWS AND AZURE
+DATE :05.09.2026
 
 Objective
 
-To identify storage assets in AWS S3 and Microsoft Azure Blob Storage, identify possible vulnerabilities and threats, and assess their likelihood, impact, and risk level.
+To audit and monitor cloud activity in AWS using AWS CloudTrail by viewing and analyzing recorded AWS events and identifying important audit information such as user identity, event name, event time, AWS service, region, and operation status.
 
-1. Software / Cloud Services Required
+1. Requirements
 
 • AWS Account
-
-• Microsoft Azure Account
 
 • Web Browser
 
 • Internet Connection
 
-Cloud Services Used
+• Amazon S3 access
 
-Cloud Platform Storage Service
+• AWS CloudTrail
 
-AWS Amazon S3
-
-Microsoft Azure Azure Blob Storage
-
-PART A — AWS S3 STORAGE ASSESSMENT
+PART A — ACCESS AWS CLOUDTRAIL
 
 Step 1: Login to AWS
 
@@ -39,194 +30,134 @@ Open the AWS Management Console.
 
 Sign in using your AWS account.
 
-Search for S3.
+In the AWS search bar, type CloudTrail.
 
-Select Amazon S3.
+Select AWS CloudTrail.
 
-Step 2: Select the S3 Bucket
-
-Click Buckets.
-
-Select the S3 bucket created in the previous experiment.
-
-Record:
-
-o Bucket name
-
-o AWS Region
-
-o Number/type of objects
-
-<img width="1920" height="1080" alt="Screenshot 2026-08-28 135723" src="https://github.com/user-attachments/assets/7e6541c0-6b68-4641-9956-99169ae11764" />
+<img width="833" height="426" alt="Screenshot 2026-09-05 095002" src="https://github.com/user-attachments/assets/0e2b7d57-25a5-470b-9c39-5986f8ef31e4" />
 
 
-Screenshot 2026-08-21 133706
-Step 3: Check Block Public Access
+Step 2: Open Event History
 
-Open the S3 bucket.
+In the CloudTrail navigation menu, select Event history.
 
-Select Permissions.
+CloudTrail displays recent AWS activity.
 
-Locate Block public access (bucket settings).
+Review the available events.
 
-Check Block all public access.
+The Event History page may display information such as:
 
-Record:
+• Event time
 
-• ON → Secure configuration
+• Username
 
-• OFF → Potential public-access risk
+• Event name
 
-<img width="1920" height="1080" alt="Screenshot 2026-08-28 135806" src="https://github.com/user-attachments/assets/98dc4f2f-5ab7-41df-a6c6-4ee6b1b179ef" />
+• Event source
 
+• Resource type
 
-Step 4: Check Bucket Versioning
+• Resource name
 
-Select the Properties tab.
-
-Locate Bucket Versioning.
-
-Record whether it is:
-
-o Enabled
-
-o Disabled
-
-Security purpose
-
-Versioning helps recover previous versions of objects after accidental deletion or modification.
-
-<img width="1920" height="1080" alt="Screenshot 2026-08-28 135835" src="https://github.com/user-attachments/assets/510bbb12-7948-4ab8-9d5b-fc7832f20630" />
+<img width="830" height="322" alt="Screenshot 2026-09-05 095135" src="https://github.com/user-attachments/assets/44f1c106-72a7-49b5-b11a-27151bb0cdec" />
 
 
+PART B — ANALYZE A CLOUDTRAIL EVENT
 
-Step 5: Check Default Encryption
+Step 3: Select an Event
 
-Stay in the Properties tab.
+From the Event History list, select an S3-related event.
 
-Locate Default encryption.
+Click the event to open its details.
 
-Record the encryption type.
+Examine the event information and the event record/JSON.
 
-Possible configurations include:
+For this experiment, a CreateBucket event can be used.
 
-• SSE-S3
+Step 4: Analyze the CreateBucket Event
 
-• SSE-KMS
+The CreateBucket event indicates that an Amazon S3 bucket creation operation occurred.
 
-• DSSE-KMS
+Record the following information:
 
-Security purpose
-
-Encryption protects stored data from unauthorized disclosure.
-
-<img width="1920" height="1080" alt="Screenshot 2026-08-28 135917" src="https://github.com/user-attachments/assets/d5160b9a-804a-4205-8c58-c8d9cd06c8e0" />
+<img width="667" height="565" alt="Screenshot 2026-09-05 095206" src="https://github.com/user-attachments/assets/e024d4cd-cd5b-44a4-82e9-437cfe80af7b" />
 
 
+Meaning of important fields
 
-Step 6: Check Bucket Policy
+<img width="832" height="357" alt="Screenshot 2026-09-05 095226" src="https://github.com/user-attachments/assets/d83844aa-7d21-4d32-955b-73736f7061d0" />
 
-Select Permissions.
 
-Locate Bucket policy.
+PART C — IDENTIFY ANOTHER CLOUDTRAIL EVENT
 
-Check whether a bucket policy exists.
+Step 5: Select Another Event
+
+Return to CloudTrail → Event history.
+
+Select another event.
+
+Open its details.
+
+Record the important fields.
+
+For example, an event such as:
+
+AutomatedDefaultVpcCreation
+
+may be present.
+
+This event is associated with Amazon EC2.
+
+Step 6: Analyze the Second Event
 
 Record:
 
-• Policy exists
-
-• No policy
-
-Note
-
-A missing bucket policy is not automatically a vulnerability. Access may be controlled through IAM and other AWS security mechanisms.
-
-<img width="1920" height="1080" alt="Screenshot 2026-08-28 135917" src="https://github.com/user-attachments/assets/4f4a0168-d341-4616-b436-c50b32fca79d" />
+<img width="658" height="552" alt="Screenshot 2026-09-05 123509" src="https://github.com/user-attachments/assets/d4e5a96e-986b-4e64-a538-2a58c9e951b7" />
 
 
-Step 7: Check Object Ownership and ACL
-
-In Permissions, locate Object Ownership.
-Record the current configuration.
-A common secure configuration is:
-
-Bucket owner enforced
-
-This means:
-
-• ACLs are disabled.
-
-• Objects are owned by the bucket owner.
-
-• Access is controlled using policies.
-
-<img width="1920" height="1080" alt="Screenshot 2026-08-28 135917" src="https://github.com/user-attachments/assets/608befd7-5500-4d10-b471-60fc42407c4c" />
+<img width="833" height="371" alt="Screenshot 2026-09-05 095546" src="https://github.com/user-attachments/assets/4b9e7dff-ed3b-437b-a27c-62048280eb36" />
 
 
-Step 8: Check Server Access Logging
+PART D — COMPARE THE EVENTS
 
-Go to Properties.
+Step 7: Prepare the Audit Comparison
 
-Locate Server access logging.
+Compare the two CloudTrail events.
 
-Record whether it is:
-
-o Enabled
-
-o Disabled
-
-Security purpose
-
-Logging helps investigate suspicious or unauthorized access to the bucket.
-
-<img width="1920" height="1080" alt="Screenshot 2026-08-28 135917" src="https://github.com/user-attachments/assets/4e8a69a9-f817-42cf-b4b4-fca25906a8eb" />
+<img width="822" height="386" alt="Screenshot 2026-09-05 095559" src="https://github.com/user-attachments/assets/98bbee1c-060e-4193-8176-3e2049a2d8b4" />
 
 
-PART B — AWS RISK ASSESSMENT
+PART E — SECURITY AUDIT ANALYSIS
 
-After checking the S3 configuration, identify possible vulnerabilities and threats.
+Step 8: Identify Who, What, When and Where
 
-Risk Formula
+For each event, identify:
 
-Risk Score = Likelihood × Impact
+WHO?
 
-Use the following scale.
+Who or which identity performed/generated the activity?
 
-Likelihood
+WHAT?
 
-<img width="185" height="203" alt="Screenshot 2026-08-28 141732" src="https://github.com/user-attachments/assets/8d178e6e-8f89-49c8-a27b-55e6b2737a7d" />
+What AWS operation was performed?
 
+WHEN?
 
-Sample AWS Risk Assessment
+At what date and time did the activity occur?
 
-<img width="812" height="258" alt="Screenshot 2026-08-28 141755" src="https://github.com/user-attachments/assets/ce1fc76f-12a6-43fe-ac6b-93c57813e317" />
+WHERE?
 
+In which AWS Region did the activity occur?
 
-<img width="792" height="305" alt="Screenshot 2026-08-28 141805" src="https://github.com/user-attachments/assets/2bfbfd67-aa5a-4d6e-8907-08ec0ce28646" />
+RESULT?
 
+Was the operation successful or did it generate an error?
+
+Step 9: Prepare the Final Audit Table
+
+<img width="826" height="155" alt="Screenshot 2026-09-05 095614" src="https://github.com/user-attachments/assets/daec4de1-7470-4e62-a260-230583a726d8" />
 
 
 RESULT
 
-The storage assets in AWS S3 were identified and analyzed. Various security configurations, vulnerabilities, threats, likelihood, and impacts were evaluated. Risk scores were calculated using the Likelihood × Impact method, and appropriate security mitigation measures were recommended.
-
-About
-No description, website, or topics provided.
-Resources
-Readme
-Activity
-Stars
-0 stars
-Watchers
-0 watching
-Forks
-0 forks
-Report repository
-Releases
-No releases published
-Packages
-No packages published
-Contributors
-No contributors
-Footer
+The cloud activities in AWS were successfully audited using AWS CloudTrail Event History. Different AWS events were examined based on event time, user identity, event name, event source, AWS Region, read-only status, and error status. The experiment demonstrated how AWS CloudTrail provides an audit trail for monitoring, accountability, and investigation of cloud activities.
